@@ -17,7 +17,7 @@ namespace pwn {
 
   private:
     inline postfix_target() :
-        cdk::basic_target("asm") {
+        cdk::basic_target("as") {
     }
 
   public:

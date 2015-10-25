@@ -1,0 +1,93 @@
+\section{cdk\+:\+:nil\+\_\+node Class Reference}
+\label{classcdk_1_1nil__node}\index{cdk\+::nil\+\_\+node@{cdk\+::nil\+\_\+node}}
+
+
+{\ttfamily \#include $<$nil\+\_\+node.\+h$>$}
+
+
+
+Inheritance diagram for cdk\+:\+:nil\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classcdk_1_1nil__node__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for cdk\+:\+:nil\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classcdk_1_1nil__node__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf nil\+\_\+node} (int {\bf lineno})
+\item 
+void {\bf accept} ({\bf basic\+\_\+ast\+\_\+visitor} $\ast$sp, int level)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class for describing empty nodes (leaves). The only data recorded by this type of node is the node's attribute (i.\+e., the mnemonic) and the source code line number. 
+
+Definition at line 15 of file nil\+\_\+node.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{cdk\+::nil\+\_\+node@{cdk\+::nil\+\_\+node}!nil\+\_\+node@{nil\+\_\+node}}
+\index{nil\+\_\+node@{nil\+\_\+node}!cdk\+::nil\+\_\+node@{cdk\+::nil\+\_\+node}}
+\subsubsection[{nil\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::nil\+\_\+node\+::nil\+\_\+node (
+\begin{DoxyParamCaption}
+\item[{int}]{lineno}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1nil__node_af83598e078cf7beb480658f7748f5529}
+Simple constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lineno} & the source code line number corresponding to the node \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 23 of file nil\+\_\+node.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{cdk\+::nil\+\_\+node@{cdk\+::nil\+\_\+node}!accept@{accept}}
+\index{accept@{accept}!cdk\+::nil\+\_\+node@{cdk\+::nil\+\_\+node}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}void cdk\+::nil\+\_\+node\+::accept (
+\begin{DoxyParamCaption}
+\item[{{\bf basic\+\_\+ast\+\_\+visitor} $\ast$}]{sp, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classcdk_1_1nil__node_a98fe1eb1acb00d40f91a75a18db2e86d}
+
+\begin{DoxyParams}{Parameters}
+{\em sp} & semantic processor visitor \\
+\hline
+{\em level} & syntactic tree level \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf cdk\+::basic\+\_\+node} \doxyref{}{p.}{classcdk_1_1basic__node_ab38adcbc95c46b809961278afae3bf05}.
+
+
+
+Definition at line 31 of file nil\+\_\+node.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ast/nil\+\_\+node.\+h\end{DoxyCompactItemize}

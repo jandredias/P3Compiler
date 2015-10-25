@@ -69,7 +69,7 @@ namespace cdk {
     // HORRENDOUS DESIGN: FIXME: SHOULD NOT BE DIRECTLY CALLED
     inline compiler(const std::string &language, std::shared_ptr<basic_scanner> scanner,
                     std::shared_ptr<basic_parser> parser) :
-        _name(language), _extension("asm"), _ifile(""), _ofile(""), _scanner(scanner), _parser(
+        _name(language), _extension("as"), _ifile(""), _ofile(""), _scanner(scanner), _parser(
             parser), _ast(nullptr), _optimize(false), _debug(false), _errors(0) {
     }
 

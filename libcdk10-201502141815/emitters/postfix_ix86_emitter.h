@@ -273,16 +273,22 @@ namespace cdk {
        void JMP(std::string value) {
          os() << "JMP " << value << std::endl;
        }
-       void JMPCOND(std::string cond, std::string value) {
-         if(cond == std::to_string('C') || cond == std::string("NC") ||
-            cond == std::to_string('Z') || cond == std::string("NZ") ||
-            cond == std::to_string('N') || cond == std::string("NN") ||
-            cond == std::to_string('O') || cond == std::string("NO") ||
-            cond == std::to_string('I') || cond == std::string("NI") ||
-            cond == std::to_string('P') || cond == std::string("NP")){
-          os() << "JMP." << cond << " " << value << std::endl;
-        }
+       void JMPN(std::string value){
+         os() << "POP R1" << std::endl;
+         os() << "ADD R1, R0" << std::endl;
+         os() << "JMP.N " << value << std::endl;
        }
+       void JMPZ(std::string value) {
+         os() << "POP R1" << std::endl;
+         os() << "ADD R1, R0" << std::endl;
+         os() << "JMP.Z " << value << std::endl;
+       }
+       void JMPCOND(std::string cond, std::string value) {
+         os() << "POP R1" << std::endl;
+         os() << "ADD R1, R0" << std::endl;
+         os() << "JMP." << cond << " " << value << std::endl;
+       }
+
        void MOD(){
          os() << "POP R1" << std::endl;
          os() << "DIV R1, M[SP + 1]" << std::endl;

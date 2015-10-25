@@ -155,6 +155,8 @@ namespace cdk {
     virtual void INC() = 0;
     virtual void INT(int) = 0;
     virtual void JMP(std::string) = 0;
+    virtual void JMPZ(std::string) = 0;
+    virtual void JMPN(std::string) = 0;
     virtual void JMPCOND(std::string, std::string) = 0;
     virtual void MOD() = 0;
     virtual void MOV(std::string, std::string) = 0;

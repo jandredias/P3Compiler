@@ -1,0 +1,124 @@
+\section{cdk\+:\+:sequence\+\_\+node Class Reference}
+\label{classcdk_1_1sequence__node}\index{cdk\+::sequence\+\_\+node@{cdk\+::sequence\+\_\+node}}
+
+
+{\ttfamily \#include $<$sequence\+\_\+node.\+h$>$}
+
+
+
+Inheritance diagram for cdk\+:\+:sequence\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classcdk_1_1sequence__node__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for cdk\+:\+:sequence\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=157pt]{classcdk_1_1sequence__node__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf sequence\+\_\+node} (int {\bf lineno}, {\bf basic\+\_\+node} $\ast$item, {\bf sequence\+\_\+node} $\ast$sequence=nullptr)
+\item 
+{\bf $\sim$sequence\+\_\+node} ()
+\item 
+{\bf basic\+\_\+node} $\ast$ {\bfseries node} (size\+\_\+t i)\label{classcdk_1_1sequence__node_a017eab5a8c90230655352b1551309719}
+
+\item 
+sequence\+\_\+type \& {\bfseries nodes} ()\label{classcdk_1_1sequence__node_ab98d492dfee088fb31299b93731027b4}
+
+\item 
+size\+\_\+t {\bfseries size} ()\label{classcdk_1_1sequence__node_ae59040d020ea3e42311595c267ca2486}
+
+\item 
+void {\bf accept} ({\bf basic\+\_\+ast\+\_\+visitor} $\ast$sp, int level)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class representing a node sequence, for instance, in an instruction block or in an argument list. 
+
+Definition at line 14 of file sequence\+\_\+node.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{cdk\+::sequence\+\_\+node@{cdk\+::sequence\+\_\+node}!sequence\+\_\+node@{sequence\+\_\+node}}
+\index{sequence\+\_\+node@{sequence\+\_\+node}!cdk\+::sequence\+\_\+node@{cdk\+::sequence\+\_\+node}}
+\subsubsection[{sequence\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::sequence\+\_\+node\+::sequence\+\_\+node (
+\begin{DoxyParamCaption}
+\item[{int}]{lineno, }
+\item[{{\bf basic\+\_\+node} $\ast$}]{item, }
+\item[{{\bf sequence\+\_\+node} $\ast$}]{sequence = {\ttfamily nullptr}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1sequence__node_a908eb5510745a1b8182df52d97cc46e6}
+Example\+: constructor for a left recursive production node\+: 
+\begin{DoxyPre}
+sequence: item \{\$\$ = new Sequence(LINE, \$1);\}* | sequence item \{\$\$ = new Sequence(LINE, \$2, \$1);\}* \end{DoxyPre}
+ The constructor of a sequence node takes the same first two arguments as any other node. The third argument is the number of child nodes\+: this argument is followed by the child nodes themselves. Note that no effort is made to ensure that the given number of children matches the actual children passed to the function. {\bfseries You have been warned...}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lineno} & the source code line number that originated the node \\
+\hline
+{\em item} & is the single element to be added to the sequence \\
+\hline
+{\em sequence} & is a previous sequence (nodes will be imported) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 36 of file sequence\+\_\+node.\+h.
+
+\index{cdk\+::sequence\+\_\+node@{cdk\+::sequence\+\_\+node}!````~sequence\+\_\+node@{$\sim$sequence\+\_\+node}}
+\index{````~sequence\+\_\+node@{$\sim$sequence\+\_\+node}!cdk\+::sequence\+\_\+node@{cdk\+::sequence\+\_\+node}}
+\subsubsection[{$\sim$sequence\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::sequence\+\_\+node\+::$\sim$sequence\+\_\+node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1sequence__node_a9264ba91bd669954d565626d3a66b1bc}
+This is the destructor for sequence nodes. Note that this destructor also causes the destruction of the node's children. 
+
+Definition at line 49 of file sequence\+\_\+node.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{cdk\+::sequence\+\_\+node@{cdk\+::sequence\+\_\+node}!accept@{accept}}
+\index{accept@{accept}!cdk\+::sequence\+\_\+node@{cdk\+::sequence\+\_\+node}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}void cdk\+::sequence\+\_\+node\+::accept (
+\begin{DoxyParamCaption}
+\item[{{\bf basic\+\_\+ast\+\_\+visitor} $\ast$}]{sp, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classcdk_1_1sequence__node_a65774c75d4f946c18222043a14968190}
+
+\begin{DoxyParams}{Parameters}
+{\em sp} & semantic processor visitor \\
+\hline
+{\em level} & syntactic tree level \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf cdk\+::basic\+\_\+node} \doxyref{}{p.}{classcdk_1_1basic__node_ab38adcbc95c46b809961278afae3bf05}.
+
+
+
+Definition at line 70 of file sequence\+\_\+node.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ast/sequence\+\_\+node.\+h\end{DoxyCompactItemize}

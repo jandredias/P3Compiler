@@ -1,0 +1,117 @@
+\section{cdk\+:\+:composite\+\_\+node Class Reference}
+\label{classcdk_1_1composite__node}\index{cdk\+::composite\+\_\+node@{cdk\+::composite\+\_\+node}}
+
+
+Inheritance diagram for cdk\+:\+:composite\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classcdk_1_1composite__node__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for cdk\+:\+:composite\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classcdk_1_1composite__node__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ {\bf basic\+\_\+node} $\ast$ $>$ \& {\bfseries subnodes} ()\label{classcdk_1_1composite__node_aa06e19a09122ee3adc47eb6ed5154864}
+
+\item 
+size\+\_\+t {\bfseries size} ()\label{classcdk_1_1composite__node_a51c0c078759cf3b6827d3739ffd80463}
+
+\item 
+{\bf basic\+\_\+node} $\ast$ {\bfseries at} (size\+\_\+t i)\label{classcdk_1_1composite__node_a5496f0b49a5ef8ea118ba27dfb640015}
+
+\item 
+{\bf composite\+\_\+node} (int {\bf lineno}, int nops,...)
+\item 
+{\bf $\sim$composite\+\_\+node} ()
+\item 
+void {\bf accept} ({\bf basic\+\_\+ast\+\_\+visitor} $\ast$sp, int level)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 11 of file composite\+\_\+node.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{cdk\+::composite\+\_\+node@{cdk\+::composite\+\_\+node}!composite\+\_\+node@{composite\+\_\+node}}
+\index{composite\+\_\+node@{composite\+\_\+node}!cdk\+::composite\+\_\+node@{cdk\+::composite\+\_\+node}}
+\subsubsection[{composite\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::composite\+\_\+node\+::composite\+\_\+node (
+\begin{DoxyParamCaption}
+\item[{int}]{lineno, }
+\item[{int}]{nops, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1composite__node_a3834fb5b7f00fdf5a89b2504b06a322b}
+The constructor of a composite node takes the same first argument as any other node. The second argument is the number of child nodes\+: this argument is followed by the child nodes themselves. Note that no effort is made to ensure that the given number of children matches the actual children passed to the function. {\bfseries You have been warned...}
+
+
+\begin{DoxyParams}{Parameters}
+{\em lineno} & the source code line number that originated the node \\
+\hline
+{\em nops} & the number of child nodes \\
+\hline
+{\em ...} & the child nodes \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file composite\+\_\+node.\+h.
+
+\index{cdk\+::composite\+\_\+node@{cdk\+::composite\+\_\+node}!````~composite\+\_\+node@{$\sim$composite\+\_\+node}}
+\index{````~composite\+\_\+node@{$\sim$composite\+\_\+node}!cdk\+::composite\+\_\+node@{cdk\+::composite\+\_\+node}}
+\subsubsection[{$\sim$composite\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::composite\+\_\+node\+::$\sim$composite\+\_\+node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1composite__node_ab0ee2b262c7b6b55a9ddb052be60b648}
+This is the destructor for composite nodes. Note that this destructor also causes the destruction of the node's children. 
+
+Definition at line 54 of file composite\+\_\+node.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{cdk\+::composite\+\_\+node@{cdk\+::composite\+\_\+node}!accept@{accept}}
+\index{accept@{accept}!cdk\+::composite\+\_\+node@{cdk\+::composite\+\_\+node}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}void cdk\+::composite\+\_\+node\+::accept (
+\begin{DoxyParamCaption}
+\item[{{\bf basic\+\_\+ast\+\_\+visitor} $\ast$}]{sp, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classcdk_1_1composite__node_af7ac243ab23b1204c44010cf42ef14a2}
+
+\begin{DoxyParams}{Parameters}
+{\em sp} & semantic processor visitor \\
+\hline
+{\em level} & syntactic tree level \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf cdk\+::basic\+\_\+node} \doxyref{}{p.}{classcdk_1_1basic__node_ab38adcbc95c46b809961278afae3bf05}.
+
+
+
+Definition at line 64 of file composite\+\_\+node.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ast/composite\+\_\+node.\+h\end{DoxyCompactItemize}

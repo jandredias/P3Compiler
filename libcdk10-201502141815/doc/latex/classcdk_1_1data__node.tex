@@ -1,0 +1,118 @@
+\section{cdk\+:\+:data\+\_\+node Class Reference}
+\label{classcdk_1_1data__node}\index{cdk\+::data\+\_\+node@{cdk\+::data\+\_\+node}}
+
+
+{\ttfamily \#include $<$data\+\_\+node.\+h$>$}
+
+
+
+Inheritance diagram for cdk\+:\+:data\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classcdk_1_1data__node__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for cdk\+:\+:data\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classcdk_1_1data__node__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf data\+\_\+node} (int {\bf lineno}, void $\ast$data, size\+\_\+t nbytes)
+\item 
+{\bf $\sim$data\+\_\+node} ()
+\item 
+void $\ast$ {\bfseries bucket} ()\label{classcdk_1_1data__node_a6b68a4bf2fdbce288421128d9c980944}
+
+\item 
+size\+\_\+t {\bfseries size} ()\label{classcdk_1_1data__node_a14645461b55cd730f23e95f5ae023bb6}
+
+\item 
+void {\bf accept} ({\bf basic\+\_\+ast\+\_\+visitor} $\ast$sp, int level)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class for describing syntactic tree leaves for holding data buffers. This class does not inherit from the {\ttfamily Simple} template. 
+
+Definition at line 14 of file data\+\_\+node.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{cdk\+::data\+\_\+node@{cdk\+::data\+\_\+node}!data\+\_\+node@{data\+\_\+node}}
+\index{data\+\_\+node@{data\+\_\+node}!cdk\+::data\+\_\+node@{cdk\+::data\+\_\+node}}
+\subsubsection[{data\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::data\+\_\+node\+::data\+\_\+node (
+\begin{DoxyParamCaption}
+\item[{int}]{lineno, }
+\item[{void $\ast$}]{data, }
+\item[{size\+\_\+t}]{nbytes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1data__node_a28f06602d5b68131bed91f668545eb28}
+Constructor for nodes that hold opaque data buffers. Each buffer is characterized by its data and the corresponding data size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lineno} & the source code line number corresponding to this node \\
+\hline
+{\em data} & the opaque data buffer \\
+\hline
+{\em nbytes} & the size (bytes) of the data buffer \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 28 of file data\+\_\+node.\+h.
+
+\index{cdk\+::data\+\_\+node@{cdk\+::data\+\_\+node}!````~data\+\_\+node@{$\sim$data\+\_\+node}}
+\index{````~data\+\_\+node@{$\sim$data\+\_\+node}!cdk\+::data\+\_\+node@{cdk\+::data\+\_\+node}}
+\subsubsection[{$\sim$data\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::data\+\_\+node\+::$\sim$data\+\_\+node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1data__node_a196cea550b65cde781468694fecc2d9b}
+The destructor. We have defined it explicitly (even though it was not needed) to emphasize that the data buffer is {\bfseries not} destroyed when the node itself dies. 
+
+Definition at line 37 of file data\+\_\+node.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{cdk\+::data\+\_\+node@{cdk\+::data\+\_\+node}!accept@{accept}}
+\index{accept@{accept}!cdk\+::data\+\_\+node@{cdk\+::data\+\_\+node}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}void cdk\+::data\+\_\+node\+::accept (
+\begin{DoxyParamCaption}
+\item[{{\bf basic\+\_\+ast\+\_\+visitor} $\ast$}]{sp, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classcdk_1_1data__node_a9d6d6f56201fdfbe965ec399ced60df8}
+
+\begin{DoxyParams}{Parameters}
+{\em sp} & semantic processor visitor \\
+\hline
+{\em level} & syntactic tree level \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf cdk\+::basic\+\_\+node} \doxyref{}{p.}{classcdk_1_1basic__node_ab38adcbc95c46b809961278afae3bf05}.
+
+
+
+Definition at line 51 of file data\+\_\+node.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ast/data\+\_\+node.\+h\end{DoxyCompactItemize}

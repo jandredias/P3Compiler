@@ -25,7 +25,7 @@ inline static void process_options(int argc, char *argv[],
   yydebug = getenv("YYDEBUG") ? 1 : 0;
 #endif
 
-  compiler->extension("asm"); // default output extension/target: ASM
+  compiler->extension("as"); // default output extension/target: ASM
 
   std::string ifile = "", ofile = "";
   for (int ax = 1; ax < argc; ax++) {

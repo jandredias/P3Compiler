@@ -1,0 +1,148 @@
+\section{basic\+\_\+ast\+\_\+visitor Class Reference}
+\label{classbasic__ast__visitor}\index{basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}}
+
+
+{\ttfamily \#include $<$basic\+\_\+ast\+\_\+visitor.\+h$>$}
+
+
+
+Collaboration diagram for basic\+\_\+ast\+\_\+visitor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=168pt]{classbasic__ast__visitor__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual {\bf $\sim$basic\+\_\+ast\+\_\+visitor} ()
+\item 
+virtual void {\bfseries do\+\_\+nil\+\_\+node} ({\bf cdk\+::nil\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a02f54aebc971eb949ef263b972c1d5c9}
+
+\item 
+virtual void {\bfseries do\+\_\+data\+\_\+node} ({\bf cdk\+::data\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a92a91d350c0447876448dc89adb872d6}
+
+\item 
+virtual void {\bfseries do\+\_\+composite\+\_\+node} ({\bf cdk\+::composite\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a0b5b9548265a03019141b63c7f5934b4}
+
+\item 
+virtual void {\bfseries do\+\_\+sequence\+\_\+node} ({\bf cdk\+::sequence\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_adfbe26d736fab220458165a60888e563}
+
+\item 
+virtual void {\bfseries do\+\_\+integer\+\_\+node} ({\bf cdk\+::integer\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a16cb8f6c1790a95f3e65019272645d0d}
+
+\item 
+virtual void {\bfseries do\+\_\+double\+\_\+node} ({\bf cdk\+::double\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_ad44ac45e5172600955897fc6669bf14e}
+
+\item 
+virtual void {\bfseries do\+\_\+string\+\_\+node} ({\bf cdk\+::string\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a3f030ce97bbd3f136d7208dd8820d848}
+
+\item 
+virtual void {\bfseries do\+\_\+identifier\+\_\+node} ({\bf cdk\+::identifier\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a1e8c56656489408c46def651164c0506}
+
+\item 
+virtual void {\bfseries do\+\_\+neg\+\_\+node} ({\bf cdk\+::neg\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a0f8aab79e4982b9165c4f2073d0a0791}
+
+\item 
+virtual void {\bfseries do\+\_\+add\+\_\+node} ({\bf cdk\+::add\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_acaf61e947882fe332740272a88d40dff}
+
+\item 
+virtual void {\bfseries do\+\_\+sub\+\_\+node} ({\bf cdk\+::sub\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_ac22ba53376b0df09fcbce78030568d1b}
+
+\item 
+virtual void {\bfseries do\+\_\+mul\+\_\+node} ({\bf cdk\+::mul\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a7806c518f8fb3f9349b3b56a0ec266be}
+
+\item 
+virtual void {\bfseries do\+\_\+div\+\_\+node} ({\bf cdk\+::div\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_abea4863f6219fb67e1841620d08a882d}
+
+\item 
+virtual void {\bfseries do\+\_\+mod\+\_\+node} ({\bf cdk\+::mod\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_ad7ad0bac59f46e8a8eae65506973f3bb}
+
+\item 
+virtual void {\bfseries do\+\_\+lt\+\_\+node} ({\bf cdk\+::lt\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a1167e428d37a80936ebb6c99638c70ca}
+
+\item 
+virtual void {\bfseries do\+\_\+le\+\_\+node} ({\bf cdk\+::le\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a51d63c3b08b977f75ecef38dcd10f919}
+
+\item 
+virtual void {\bfseries do\+\_\+ge\+\_\+node} ({\bf cdk\+::ge\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a50cb4319b9ba03376fe567a92a0fb1ab}
+
+\item 
+virtual void {\bfseries do\+\_\+gt\+\_\+node} ({\bf cdk\+::gt\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a35d5c3dd16c3eec5797d67324608fd68}
+
+\item 
+virtual void {\bfseries do\+\_\+ne\+\_\+node} ({\bf cdk\+::ne\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_adef6c9af687ca4c1a84d4e6b2f89f43c}
+
+\item 
+virtual void {\bfseries do\+\_\+eq\+\_\+node} ({\bf cdk\+::eq\+\_\+node} $\ast$const node, int lvl)=0\label{classbasic__ast__visitor_a28c9f578ae839fe555cd92615e8c2acb}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf basic\+\_\+ast\+\_\+visitor} (std\+::ostream \&{\bf os}=std\+::cout, bool debug=false)
+\item 
+std\+::ostream \& {\bf os} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bf \+\_\+debug}\label{classbasic__ast__visitor_a00d9f815e553a3313b33a952e03702f4}
+
+\begin{DoxyCompactList}\small\item\em Debug flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is only for compiling the package\+: it will not be installed. Specific compilers are supposed to define their own, with the S\+A\+M\+E N\+A\+M\+E, but defining A\+L\+L processing functions corresponding to their specific problem. 
+
+Definition at line 41 of file basic\+\_\+ast\+\_\+visitor.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}!basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}}
+\index{basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}!basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}}
+\subsubsection[{basic\+\_\+ast\+\_\+visitor}]{\setlength{\rightskip}{0pt plus 5cm}basic\+\_\+ast\+\_\+visitor\+::basic\+\_\+ast\+\_\+visitor (
+\begin{DoxyParamCaption}
+\item[{std\+::ostream \&}]{os = {\ttfamily std\+:\+:cout}, }
+\item[{bool}]{debug = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{classbasic__ast__visitor_a194d2f7cced321e384b68782d8e33a47}
+Initialization of a semantic processor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & is the output stream to be used by the semantic processor. \\
+\hline
+\end{DoxyParams}
+\index{basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}!````~basic\+\_\+ast\+\_\+visitor@{$\sim$basic\+\_\+ast\+\_\+visitor}}
+\index{````~basic\+\_\+ast\+\_\+visitor@{$\sim$basic\+\_\+ast\+\_\+visitor}!basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}}
+\subsubsection[{$\sim$basic\+\_\+ast\+\_\+visitor}]{\setlength{\rightskip}{0pt plus 5cm}virtual basic\+\_\+ast\+\_\+visitor\+::$\sim$basic\+\_\+ast\+\_\+visitor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classbasic__ast__visitor_a110508f9dd86fc1472ffee3d2b3bd0f5}
+How to destroy a semantic processor. 
+
+\subsection{Member Function Documentation}
+\index{basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}!os@{os}}
+\index{os@{os}!basic\+\_\+ast\+\_\+visitor@{basic\+\_\+ast\+\_\+visitor}}
+\subsubsection[{os}]{\setlength{\rightskip}{0pt plus 5cm}std\+::ostream\& basic\+\_\+ast\+\_\+visitor\+::os (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classbasic__ast__visitor_ab81ab147fe687470c3e8f9ebfd2ca6f9}
+Return the current output stream. \begin{DoxyReturn}{Returns}
+an output stream. 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file basic\+\_\+ast\+\_\+visitor.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+basic\+\_\+ast\+\_\+visitor.\+h\end{DoxyCompactItemize}

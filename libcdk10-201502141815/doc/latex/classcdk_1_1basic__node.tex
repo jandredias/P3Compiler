@@ -1,0 +1,125 @@
+\section{cdk\+:\+:basic\+\_\+node Class Reference}
+\label{classcdk_1_1basic__node}\index{cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}}
+
+
+{\ttfamily \#include $<$basic\+\_\+node.\+h$>$}
+
+
+
+Inheritance diagram for cdk\+:\+:basic\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classcdk_1_1basic__node__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for cdk\+:\+:basic\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{classcdk_1_1basic__node__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf lineno} () const 
+\item 
+std\+::string {\bf name} () const 
+\item 
+virtual void {\bf accept} ({\bf basic\+\_\+ast\+\_\+visitor} $\ast$sp, int level)=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf basic\+\_\+node} (int {\bf lineno})
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for describing A\+S\+T nodes. This is an abstract class and forms the root of the node hierarchy. The node hierarchy is organized in a structure according to the {\itshape Composite} design pattern\+: class {\ttfamily node} is the root of the hierarchy; class {\ttfamily simple} is a template for leaves holding simple (atomic) types; {\ttfamily composite} represents the recursive structure. Note that other recursion classes are possible by extending any of the classes in this family. 
+
+Definition at line 21 of file basic\+\_\+node.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}!basic\+\_\+node@{basic\+\_\+node}}
+\index{basic\+\_\+node@{basic\+\_\+node}!cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}}
+\subsubsection[{basic\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::basic\+\_\+node\+::basic\+\_\+node (
+\begin{DoxyParamCaption}
+\item[{int}]{lineno}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}\label{classcdk_1_1basic__node_a4e09fec517e3a83503852de9e4fd5d72}
+Simple constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lineno} & the source code line number corresponding to the node \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 30 of file basic\+\_\+node.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}!accept@{accept}}
+\index{accept@{accept}!cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}virtual void cdk\+::basic\+\_\+node\+::accept (
+\begin{DoxyParamCaption}
+\item[{{\bf basic\+\_\+ast\+\_\+visitor} $\ast$}]{sp, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}\label{classcdk_1_1basic__node_ab38adcbc95c46b809961278afae3bf05}
+Every node must provide this method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sp} & semantic processor visitor \\
+\hline
+{\em level} & syntactic tree level \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in {\bf cdk\+::sequence\+\_\+node} \doxyref{}{p.}{classcdk_1_1sequence__node_a65774c75d4f946c18222043a14968190}, {\bf cdk\+::composite\+\_\+node} \doxyref{}{p.}{classcdk_1_1composite__node_af7ac243ab23b1204c44010cf42ef14a2}, {\bf cdk\+::data\+\_\+node} \doxyref{}{p.}{classcdk_1_1data__node_a9d6d6f56201fdfbe965ec399ced60df8}, {\bf cdk\+::if\+\_\+else\+\_\+node} \doxyref{}{p.}{classcdk_1_1if__else__node_a348ea45d822a94125a12156c92db48a0}, {\bf cdk\+::nil\+\_\+node} \doxyref{}{p.}{classcdk_1_1nil__node_a98fe1eb1acb00d40f91a75a18db2e86d}, {\bf cdk\+::identifier\+\_\+node} \doxyref{}{p.}{classcdk_1_1identifier__node_aab81ccb83be770047771dda4c59b0568}, {\bf cdk\+::string\+\_\+node} \doxyref{}{p.}{classcdk_1_1string__node_a8ddaf8a19a75e2ff892eadd1606cb16f}, {\bf cdk\+::if\+\_\+node} \doxyref{}{p.}{classcdk_1_1if__node_a3fee89ddd665238ed4db37fd73d01d81}, {\bf cdk\+::while\+\_\+node} \doxyref{}{p.}{classcdk_1_1while__node_a7599c47777a5423a5889c3e708bb13bb}, {\bf cdk\+::eq\+\_\+node} \doxyref{}{p.}{classcdk_1_1eq__node_ac874f2c13fc2f66ce23b08d99594368e}, {\bf cdk\+::add\+\_\+node} \doxyref{}{p.}{classcdk_1_1add__node_a5a0a7fd1aacfcf589233c9b1cdda59d1}, {\bf cdk\+::ge\+\_\+node} \doxyref{}{p.}{classcdk_1_1ge__node_a758ad0281c1e925aab356d757bedce40}, {\bf cdk\+::gt\+\_\+node} \doxyref{}{p.}{classcdk_1_1gt__node_ab1104710ad583f4b13d397bf33b2f9f5}, {\bf cdk\+::le\+\_\+node} \doxyref{}{p.}{classcdk_1_1le__node_a4d3a01246f47dcb95ab7535a9047c9d6}, {\bf cdk\+::lt\+\_\+node} \doxyref{}{p.}{classcdk_1_1lt__node_a6af8ca3130c12e7a38860c9e92aaaa97}, {\bf cdk\+::mod\+\_\+node} \doxyref{}{p.}{classcdk_1_1mod__node_a990120f568275fb78d9adf66ec46434a}, {\bf cdk\+::mul\+\_\+node} \doxyref{}{p.}{classcdk_1_1mul__node_a82daadfc3194683a75c2e0630d09318d}, {\bf cdk\+::ne\+\_\+node} \doxyref{}{p.}{classcdk_1_1ne__node_a66ac549e9cc152c1d4c23dfe0c3c3830}, {\bf cdk\+::sub\+\_\+node} \doxyref{}{p.}{classcdk_1_1sub__node_a6200490aef72dc9483ac91047ba78e12}, {\bf cdk\+::div\+\_\+node} \doxyref{}{p.}{classcdk_1_1div__node_a18fdb1b825aeba112a607964f3901a6d}, {\bf cdk\+::double\+\_\+node} \doxyref{}{p.}{classcdk_1_1double__node_a3338941e9e94a4f88df4a418092c1ec8}, {\bf cdk\+::integer\+\_\+node} \doxyref{}{p.}{classcdk_1_1integer__node_a6b47d4c572b80bbaed62604a8c68788d}, and {\bf cdk\+::neg\+\_\+node} \doxyref{}{p.}{classcdk_1_1neg__node_ac49b8a32b9edaccfe38000cdb23d44c2}.
+
+\index{cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}!lineno@{lineno}}
+\index{lineno@{lineno}!cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}}
+\subsubsection[{lineno}]{\setlength{\rightskip}{0pt plus 5cm}int cdk\+::basic\+\_\+node\+::lineno (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1basic__node_a4750afc3539d2b8f53ca74dbdd181a02}
+\begin{DoxyReturn}{Returns}
+the line number of the corresponding source code 
+\end{DoxyReturn}
+
+
+Definition at line 40 of file basic\+\_\+node.\+h.
+
+\index{cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}!name@{name}}
+\index{name@{name}!cdk\+::basic\+\_\+node@{cdk\+::basic\+\_\+node}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}std\+::string cdk\+::basic\+\_\+node\+::name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1basic__node_a181c07863b3f40eaabac9a5e69160cab}
+\begin{DoxyReturn}{Returns}
+the name of the node's class 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file basic\+\_\+node.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ast/basic\+\_\+node.\+h\end{DoxyCompactItemize}

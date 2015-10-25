@@ -330,46 +330,76 @@ void pwn::postfix_writer::do_mod_node(cdk::mod_node * const node, int lvl) {
   _pf.MOD();
 }
 void pwn::postfix_writer::do_lt_node(cdk::lt_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.LT();*/
+  _pf.SUB();
+  _pf.JMPCOND("N",mklbl(++_lbl));
+  _pf.TRASH(1);
+  _pf.PUSH(1);
+  _pf.LABEL(mklbl(_lbl));
+  _pf.NOP();
 }
 void pwn::postfix_writer::do_le_node(cdk::le_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.LE();*/
+  _pf.SUB();
+  _pf.JMPCOND("NP",mklbl(++_lbl));
+  _pf.TRASH(1);
+  _pf.PUSH(1);
+  _pf.LABEL(mklbl(_lbl));
+  _pf.NOP();
 }
 void pwn::postfix_writer::do_ge_node(cdk::ge_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.GE();*/
+  _pf.SUB();
+  _pf.JMPCOND("NN",mklbl(++_lbl));
+  _pf.TRASH(1);
+  _pf.PUSH(1);
+  _pf.LABEL(mklbl(_lbl));
+  _pf.NOP();
 }
 void pwn::postfix_writer::do_gt_node(cdk::gt_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.GT();
-*/}
+  _pf.SUB();
+  _pf.JMPCOND("P",mklbl(++_lbl));
+  _pf.TRASH(1);
+  _pf.PUSH(1);
+  _pf.LABEL(mklbl(_lbl));
+  _pf.NOP();
+}
 void pwn::postfix_writer::do_ne_node(cdk::ne_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.NE();
-*/
+  _pf.SUB();
+  _pf.JMPCOND("NZ",mklbl(++_lbl));
+  _pf.TRASH(1);
+  _pf.PUSH(1);
+  _pf.LABEL(mklbl(_lbl));
+  _pf.NOP();
 }
 void pwn::postfix_writer::do_eq_node(cdk::eq_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
   _pf.SUB();
+  _pf.JMPCOND("Z",mklbl(++_lbl));
+  _pf.TRASH(1);
+  _pf.PUSH(1);
+  _pf.LABEL(mklbl(_lbl));
+  _pf.NOP();
 }
 void pwn::postfix_writer::do_not_node(pwn::not_node * const node, int lvl){
-  //CHECK_TYPES(_compiler, _symtab, node);
-  //node->argument()->accept(this, lvl);
-  //_pf.NOT();
+  CHECK_TYPES(_compiler, _symtab, node);
+  node->argument()->accept(this, lvl);
+  _pf.PUSH(1);
+  _pf.XOR();
 }
 
 
@@ -451,11 +481,11 @@ void pwn::postfix_writer::do_read_node(pwn::read_node * const node, int lvl) {
 }
 
 void pwn::postfix_writer::do_if_node(cdk::if_node * const node, int lvl) {
-  int lbl1;
   node->condition()->accept(this, lvl);
-  _pf.JMPCOND("Z",mklbl(lbl1 = ++_lbl));
+  _pf.JMPZ(mklbl(++_lbl));
   node->block()->accept(this, lvl + 2);
-  _pf.LABEL(mklbl(lbl1));
+  _pf.LABEL(mklbl(_lbl));
+  _pf.NOP();
 }
 
 //---------------------------------------------------------------------------
@@ -463,7 +493,7 @@ void pwn::postfix_writer::do_if_node(cdk::if_node * const node, int lvl) {
 void pwn::postfix_writer::do_if_else_node(cdk::if_else_node * const node, int lvl) {
   int lbl1, lbl2;
   node->condition()->accept(this, lvl);
-  _pf.JMPCOND("Z",mklbl(lbl1 = ++_lbl));
+  _pf.JMPZ(mklbl(lbl1 = ++_lbl));
   node->thenblock()->accept(this, lvl + 2);
   _pf.JMP(mklbl(lbl2 = ++_lbl));
   _pf.LABEL(mklbl(lbl1));

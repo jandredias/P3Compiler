@@ -1,0 +1,97 @@
+\section{cdk\+:\+:lt\+\_\+node Class Reference}
+\label{classcdk_1_1lt__node}\index{cdk\+::lt\+\_\+node@{cdk\+::lt\+\_\+node}}
+
+
+{\ttfamily \#include $<$lt\+\_\+node.\+h$>$}
+
+
+
+Inheritance diagram for cdk\+:\+:lt\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{classcdk_1_1lt__node__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for cdk\+:\+:lt\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classcdk_1_1lt__node__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bf lt\+\_\+node} (int {\bf lineno}, {\bf expression\+\_\+node} $\ast$left, {\bf expression\+\_\+node} $\ast$right)
+\item 
+void {\bf accept} ({\bf basic\+\_\+ast\+\_\+visitor} $\ast$sp, int level)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class for describing the lower-\/than operator 
+
+Definition at line 12 of file lt\+\_\+node.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{cdk\+::lt\+\_\+node@{cdk\+::lt\+\_\+node}!lt\+\_\+node@{lt\+\_\+node}}
+\index{lt\+\_\+node@{lt\+\_\+node}!cdk\+::lt\+\_\+node@{cdk\+::lt\+\_\+node}}
+\subsubsection[{lt\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}cdk\+::lt\+\_\+node\+::lt\+\_\+node (
+\begin{DoxyParamCaption}
+\item[{int}]{lineno, }
+\item[{{\bf expression\+\_\+node} $\ast$}]{left, }
+\item[{{\bf expression\+\_\+node} $\ast$}]{right}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\label{classcdk_1_1lt__node_a2c3e8e72fb6385cc25ea2bc3cd594bc5}
+
+\begin{DoxyParams}{Parameters}
+{\em lineno} & source code line number for this node \\
+\hline
+{\em left} & first operand \\
+\hline
+{\em right} & second operand \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 19 of file lt\+\_\+node.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{cdk\+::lt\+\_\+node@{cdk\+::lt\+\_\+node}!accept@{accept}}
+\index{accept@{accept}!cdk\+::lt\+\_\+node@{cdk\+::lt\+\_\+node}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}void cdk\+::lt\+\_\+node\+::accept (
+\begin{DoxyParamCaption}
+\item[{{\bf basic\+\_\+ast\+\_\+visitor} $\ast$}]{sp, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classcdk_1_1lt__node_a6af8ca3130c12e7a38860c9e92aaaa97}
+
+\begin{DoxyParams}{Parameters}
+{\em sp} & semantic processor visitor \\
+\hline
+{\em level} & syntactic tree level \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf cdk\+::basic\+\_\+node} \doxyref{}{p.}{classcdk_1_1basic__node_ab38adcbc95c46b809961278afae3bf05}.
+
+
+
+Definition at line 27 of file lt\+\_\+node.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ast/lt\+\_\+node.\+h\end{DoxyCompactItemize}

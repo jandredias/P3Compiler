@@ -1,0 +1,84 @@
+\section{cdk\+:\+:if\+\_\+else\+\_\+node Class Reference}
+\label{classcdk_1_1if__else__node}\index{cdk\+::if\+\_\+else\+\_\+node@{cdk\+::if\+\_\+else\+\_\+node}}
+
+
+{\ttfamily \#include $<$if\+\_\+else\+\_\+node.\+h$>$}
+
+
+
+Inheritance diagram for cdk\+:\+:if\+\_\+else\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=141pt]{classcdk_1_1if__else__node__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for cdk\+:\+:if\+\_\+else\+\_\+node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=141pt]{classcdk_1_1if__else__node__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries if\+\_\+else\+\_\+node} (int {\bf lineno}, {\bf expression\+\_\+node} $\ast$condition, {\bf basic\+\_\+node} $\ast$thenblock, {\bf basic\+\_\+node} $\ast$elseblock)\label{classcdk_1_1if__else__node_a65d1fba860ae3c8bb5e793b76d7b2921}
+
+\item 
+{\bf expression\+\_\+node} $\ast$ {\bfseries condition} ()\label{classcdk_1_1if__else__node_a1d7ef51acf621b820e720488ca37bd5c}
+
+\item 
+{\bf basic\+\_\+node} $\ast$ {\bfseries thenblock} ()\label{classcdk_1_1if__else__node_a601df4f07b8a93995744f0262b69e63b}
+
+\item 
+{\bf basic\+\_\+node} $\ast$ {\bfseries elseblock} ()\label{classcdk_1_1if__else__node_a71bd0be67c2d9eaf83ed7896250e1e38}
+
+\item 
+void {\bf accept} ({\bf basic\+\_\+ast\+\_\+visitor} $\ast$sp, int level)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class for describing if-\/then-\/else nodes. 
+
+Definition at line 12 of file if\+\_\+else\+\_\+node.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\index{cdk\+::if\+\_\+else\+\_\+node@{cdk\+::if\+\_\+else\+\_\+node}!accept@{accept}}
+\index{accept@{accept}!cdk\+::if\+\_\+else\+\_\+node@{cdk\+::if\+\_\+else\+\_\+node}}
+\subsubsection[{accept}]{\setlength{\rightskip}{0pt plus 5cm}void cdk\+::if\+\_\+else\+\_\+node\+::accept (
+\begin{DoxyParamCaption}
+\item[{{\bf basic\+\_\+ast\+\_\+visitor} $\ast$}]{sp, }
+\item[{int}]{level}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classcdk_1_1if__else__node_a348ea45d822a94125a12156c92db48a0}
+Every node must provide this method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sp} & semantic processor visitor \\
+\hline
+{\em level} & syntactic tree level \\
+\hline
+\end{DoxyParams}
+
+
+Implements {\bf cdk\+::basic\+\_\+node} \doxyref{}{p.}{classcdk_1_1basic__node_ab38adcbc95c46b809961278afae3bf05}.
+
+
+
+Definition at line 32 of file if\+\_\+else\+\_\+node.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+ast/if\+\_\+else\+\_\+node.\+h\end{DoxyCompactItemize}

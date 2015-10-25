@@ -1,0 +1,4 @@
+<map id="cdk::basic_postfix_emitter" name="cdk::basic_postfix_emitter">
+<area shape="rect" id="node2" href="$classcdk_1_1postfix__debug__emitter.html" title="{cdk::postfix_debug\l_emitter\n||+ postfix_debug_emitter()\l+ NOP()\l+ INT()\l+ ADD()\l+ SUB()\l+ MUL()\l+ DIV()\l+ MOD()\l+ NEG()\l+ INCR()\land 97 more...\l}" alt="" coords="5,336,177,575"/>
+<area shape="rect" id="node3" href="$classcdk_1_1postfix__ix86__emitter.html" title="{cdk::postfix_ix86_emitter\n||+ postfix_ix86_emitter()\l+ ORIG()\l+ EQU()\l+ WORD()\l+ STR()\l+ TAB()\l+ ADD()\l+ ADDC()\l+ AND()\l+ BRCOND()\land 42 more...\l}" alt="" coords="202,343,370,567"/>
+</map>
