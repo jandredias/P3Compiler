@@ -1,0 +1,54 @@
+yydebug: state 0, reading 35 ('#')
+yydebug: state 0, reducing by rule 25 (public :)
+yydebug: after reduction, shifting from state 0 to state 8
+yydebug: state 8, shifting to state 14
+yydebug: state 14, reducing by rule 18 (type : '#')
+yydebug: after reduction, shifting from state 8 to state 16
+yydebug: state 16, reading 259 (tIDENTIFIER)
+yydebug: state 16, shifting to state 18
+yydebug: state 18, reading 40 ('(')
+yydebug: state 18, shifting to state 21
+yydebug: state 21, reading 41 (')')
+yydebug: state 21, shifting to state 34
+yydebug: state 34, reading 123 ('{')
+yydebug: state 34, shifting to state 60
+yydebug: state 60, reading 36 ('$')
+yydebug: state 60, reducing by rule 25 (public :)
+yydebug: after reduction, shifting from state 60 to state 8
+yydebug: state 8, shifting to state 15
+yydebug: state 15, reducing by rule 20 (type : '$')
+yydebug: after reduction, shifting from state 8 to state 16
+yydebug: state 16, reading 259 (tIDENTIFIER)
+yydebug: state 16, shifting to state 18
+yydebug: state 18, reading 61 ('=')
+yydebug: state 18, shifting to state 20
+1
+yydebug: state 20, reading 260 (tSTRING)
+yydebug: state 20, shifting to state 25
+yydebug: state 25, reducing by rule 73 (literal : tSTRING)
+yydebug: after reduction, shifting from state 20 to state 31
+yydebug: state 31, reducing by rule 69 (expr : literal)
+yydebug: after reduction, shifting from state 20 to state 30
+yydebug: state 30, reading 59 (';')
+yydebug: state 30, reducing by rule 7 (var_declaration : public type tIDENTIFIER '=' expr)
+yydebug: after reduction, shifting from state 60 to state 5
+yydebug: state 5, shifting to state 9
+yydebug: state 9, reducing by rule 4 (declaration : var_declaration ';')
+yydebug: after reduction, shifting from state 60 to state 4
+yydebug: state 4, reducing by rule 2 (declarations : declaration)
+yydebug: after reduction, shifting from state 60 to state 93
+yydebug: state 93, reading 125 ('}')
+yydebug: state 93, reducing by rule 32 (block : declarations)
+yydebug: after reduction, shifting from state 60 to state 96
+yydebug: state 96, shifting to state 118
+yydebug: state 118, reducing by rule 29 (body : '{' block '}')
+yydebug: after reduction, shifting from state 34 to state 61
+yydebug: state 61, reducing by rule 13 (function_declaration : public type tIDENTIFIER '(' ')' body)
+yydebug: after reduction, shifting from state 0 to state 6
+yydebug: state 6, reducing by rule 5 (declaration : function_declaration)
+yydebug: after reduction, shifting from state 0 to state 4
+yydebug: state 4, reducing by rule 2 (declarations : declaration)
+yydebug: after reduction, shifting from state 0 to state 7
+yydebug: state 7, reading 0 (end-of-file)
+yydebug: state 7, reducing by rule 1 (file : declarations)
+yydebug: after reduction, shifting from state 0 to state 3

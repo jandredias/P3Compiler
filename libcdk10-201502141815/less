@@ -1,0 +1,3 @@
+if [ ! -e cdk ]; then ln -s . cdk; fi
+g++ -I. -ggdb -Wall -std=c++11 -pedantic -c emitters/postfix_ix86_emitter.cpp -o emitters/postfix_ix86_emitter.o
+Makefile:34: recipe for target 'emitters/postfix_ix86_emitter.o' failed
