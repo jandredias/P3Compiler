@@ -27,6 +27,17 @@ namespace cdk {
 //---------------------------------------------------------------------------
 
 namespace pwn {
+class not_node; 
+class var_dec_node; 
+class var_node; 
+class function_call_node; 
+class function_def_node; 
+class function_dec_node; 
+class identity_node; 
+class block_node; 
+class noob_node; 
+class mem_alloc_node; 
+class address_node; 
 class assignment_node; 
 class evaluation_node; 
 class lvalue_node; 
@@ -41,17 +52,6 @@ class return_node;
 class next_node; 
 class stop_node; 
 class println_node; 
-class not_node; 
-class var_dec_node; 
-class var_node; 
-class function_call_node; 
-class function_def_node; 
-class function_dec_node; 
-class identity_node; 
-class block_node; 
-class noob_node; 
-class mem_alloc_node; 
-class address_node; 
 
 } // namespace pwn
 
@@ -97,6 +97,17 @@ class address_node;
 //     THESE ARE THE NODES DEFINED SPECIFICALLY FOR THIS APPLICATION
 //---------------------------------------------------------------------------
 
+#include "ast/not_node.h"
+#include "ast/var_dec_node.h"
+#include "ast/var_node.h"
+#include "ast/function_call_node.h"
+#include "ast/function_def_node.h"
+#include "ast/function_dec_node.h"
+#include "ast/identity_node.h"
+#include "ast/block_node.h"
+#include "ast/noob_node.h"
+#include "ast/mem_alloc_node.h"
+#include "ast/address_node.h"
 #include "ast/assignment_node.h"
 #include "ast/evaluation_node.h"
 #include "ast/lvalue_node.h"
@@ -111,17 +122,6 @@ class address_node;
 #include "ast/next_node.h"
 #include "ast/stop_node.h"
 #include "ast/println_node.h"
-#include "ast/not_node.h"
-#include "ast/var_dec_node.h"
-#include "ast/var_node.h"
-#include "ast/function_call_node.h"
-#include "ast/function_def_node.h"
-#include "ast/function_dec_node.h"
-#include "ast/identity_node.h"
-#include "ast/block_node.h"
-#include "ast/noob_node.h"
-#include "ast/mem_alloc_node.h"
-#include "ast/address_node.h"
 
 
 //---------------------------------------------------------------------------

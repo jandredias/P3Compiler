@@ -5,10 +5,10 @@
 #=====================================================================
 
 # install in user's home directory
-ROOT = ${HOME}/compiladores/root
+ROOT = ${HOME}/P3Compiler/root
 
 # if installing in system dirs, use the following line instead
-#ROOT= 
+#ROOT=
 
 #=====================================================================
 #==========      DO NOT CHANGE ANYTHING AFTER THIS LINE     ==========
@@ -25,11 +25,11 @@ FORMAT=elf32
 #FORMAT=elf64
 
 COMMON_FLAGS = -O3 -ggdb -Wall -ansi -pedantic -nostdlib -fno-builtin -m32
-CFLAGS       = $(COMMON_FLAGS) -std=c99 
+CFLAGS       = $(COMMON_FLAGS) -std=c99
 CXXFLAGS     = $(COMMON_FLAGS)
 
 SRC_C   = file.c float.c integer.c string.c
-SRC_CPP = 
+SRC_CPP =
 SRC_ASM = lib32.asm kernel.asm
 
 OFILES_C   = $(SRC_C:%.c=%.o)

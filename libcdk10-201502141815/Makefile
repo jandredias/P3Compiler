@@ -4,10 +4,10 @@
 #=====================================================================
 
 # install in user's home directory
-ROOT = ${HOME}/compiladores/root
+ROOT = ${HOME}/P3Compiler/root
 
 # if installing in system dirs, use the following line instead
-#ROOT= 
+#ROOT=
 
 #=====================================================================
 #==========      DO NOT CHANGE ANYTHING AFTER THIS LINE     ==========
@@ -24,7 +24,7 @@ INST_DOC_DIR = $(ROOT)/usr/share/doc/packages/$(LIBNAME)
 
 SRC_CPP = $(wildcard *.cpp) $(wildcard ast/*.cpp) \
 					$(wildcard emitters/*.cpp)
-	        
+
 OFILES = $(SRC_CPP:%.cpp=%.o)
 
 YACC=byacc

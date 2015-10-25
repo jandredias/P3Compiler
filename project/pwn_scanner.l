@@ -46,7 +46,7 @@ HEX			[A-Fa-f0-9]
 "null"      return tNOOB;
 ";"         return tEND;
 "void"      return tVOID;
-"int"       return tVOID;
+"int"       return tINT;
 "string"    return tSTRING;
 
 {ID}			  yylval.s = new std::string(yytext); return tID;

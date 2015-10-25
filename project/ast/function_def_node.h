@@ -22,13 +22,13 @@ namespace pwn {
 		inline function_def_node(int lineno, std::string *name,
 			cdk::sequence_node *arg, basic_type *ret, cdk::basic_node *block, bool local) :
 			basic_node(lineno), _name(name), _arg(arg), _return(ret), _block(block), _local(local) {
-				if(!name->compare("pwn")) _main = true; else _main = false;
+				if(!name->compare("main")) _main = true; else _main = false;
 			}
 
 		inline function_def_node(int lineno, std::string *name,
 			cdk::sequence_node *arg, basic_type *ret, cdk::basic_node *block, bool local, cdk::expression_node *returnDefault) :
 			basic_node(lineno), _name(name), _arg(arg), _return(ret), _block(block), _local(local), _returnDefault(returnDefault) {
-				if(!name->compare("pwn")) _main = true; else _main = false;
+				if(!name->compare("main")) _main = true; else _main = false;
 			}
 
 		std::string *name(){ return _name; }

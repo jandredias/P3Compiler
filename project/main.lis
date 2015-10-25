@@ -1,0 +1,11 @@
+
+	            G L O B A L   R E F E R E N C E S
+
+	             Name               Value        Type
+	==============================|=======|===============
+	a                                8000         VARIABLE
+	b                                8001         VARIABLE
+	_main                            0000            LABEL
+	_L1                              001B            LABEL
+	_L2                              0027            LABEL
+	_L3                              0028            LABEL

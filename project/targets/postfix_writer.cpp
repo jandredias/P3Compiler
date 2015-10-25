@@ -25,7 +25,7 @@ void pwn::postfix_writer::do_string_node(cdk::string_node * const node, int lvl)
   int lbl1;
   _pf.ORIG(dataPointer());
   _pf.STR(mklbl(lbl1 = +_lbl), node->value()); //give the string a name
-  dataPointer(node->value()->size());
+  dataPointer(node->value().size());
   /* leave the address on the stack */
   //_pf.TEXT(); // return to the TEXT segment
   //_pf.ADDR(mklbl(lbl1)); // the string to be printed
@@ -58,7 +58,7 @@ void pwn::postfix_writer::do_add_node(cdk::add_node * const node, int lvl) {
   //}
 }
 void pwn::postfix_writer::do_mem_alloc_node(pwn::mem_alloc_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  /*CHECK_TYPES(_compiler, _symtab, node);
   if(_level == 0){
     std::cerr << "mem alloc node global not defined";
     return;
@@ -74,14 +74,13 @@ void pwn::postfix_writer::do_mem_alloc_node(pwn::mem_alloc_node * const node, in
   std::shared_ptr<pwn::symbol> s1(pointer);
   _symtab.insert(*node->name(), s1);
   _head += node->size() * 8;
-*/}
+  */
+}
 
 void pwn::postfix_writer::do_var_dec_node(pwn::var_dec_node * const node, int lvl) {
-  /*CHECK_TYPES(_compiler, _symtab, node);
-
-  //Variables are global
-
+  CHECK_TYPES(_compiler, _symtab, node);
   if(_level == 0){
+  //Variables are global
     std::shared_ptr<pwn::symbol> s = _symtab.find(*node->name());
     if(s.get() != NULL){
       std::cerr << "error: redefinition of '" << *node->name() << "'" << std::endl;
@@ -90,46 +89,25 @@ void pwn::postfix_writer::do_var_dec_node(pwn::var_dec_node * const node, int lv
     symbol *pointerG = new symbol(node->type(), *node->name(), 0);
     std::shared_ptr<pwn::symbol> s3(pointerG);
     _symtab.insert(*node->name(), s3);
+    _pf.ORIG(dataPointer());
     if(node->init() != NULL){
-      _pf.DATA();
-      _pf.ALIGN();
-      _pf.GLOBAL(*node->name(), _pf.OBJ());
-      _pf.LABEL(*node->name());
+      //Get back to ORIG CODE
       if((node->type()->name() == basic_type::TYPE_INT) &&
          (dynamic_cast<cdk::integer_node*>(node->init()) != NULL)){
-          _pf.CONST((dynamic_cast<cdk::integer_node*>(node->init()))->value());
-      }
-      else if((node->type()->name() == basic_type::TYPE_DOUBLE) &&
-         (dynamic_cast<cdk::double_node*>(node->init()) != NULL)){
-        _pf.DOUBLE((dynamic_cast<cdk::double_node*>(node->init()))->value());
+        _pf.WORD(*node->name(), (dynamic_cast<cdk::integer_node*>(node->init()))->value());
+        dataPointer(1);
       }else if((node->type()->name() == basic_type::TYPE_STRING) &&
          (dynamic_cast<cdk::string_node*>(node->init()) != NULL)){
-           _pf.RODATA(); // strings are DATA readonly
-           _pf.ALIGN(); // make sure we are aligned
-           _pf.LABEL(mklbl(++_lbl)); // give the string a name
-           _pf.STR((dynamic_cast<cdk::string_node*>(node->init()))->value()); // output string characters
-*/
-           /* leave the address on the stack */
-  /*         _pf.DATA(); // return to the TEXT segment
-           _pf.ALIGN();
-           _pf.ID(mklbl(_lbl)); // the string to be printed
-           _pf.TEXT();
-
-
+        _pf.STR(*node->name(), (dynamic_cast<cdk::string_node*>(node->init()))->value());
+        dataPointer((dynamic_cast<cdk::string_node*>(node->init()))->value().size());
       }else if(node->type()->name() == basic_type::TYPE_POINTER){
-        _pf.INT(0);
+        _pf.WORD(*node->name(), 0);
+        dataPointer(1);
       }
-      node->init()->accept(this, lvl);
     }else{
-      _pf.BSS();
-      _pf.ALIGN();
-      _pf.GLOBAL(*node->name(), _pf.OBJ());
-      _pf.LABEL(*node->name());
-      _pf.BYTE(node->type()->size());
+      dataPointer(1);
+      _pf.WORD(*(node->name()),0);
     }
-
-    _pf.TEXT();
-    _pf.ALIGN();
     return;
   }
 
@@ -139,7 +117,7 @@ void pwn::postfix_writer::do_var_dec_node(pwn::var_dec_node * const node, int lv
   //Search on symbol table, and if it exists shows error: REDECLARED VARIABLE OR FUNCTION
   //It is not possible to have a function and a variable with the same name
 
-  std::shared_ptr<pwn::symbol> s = _symtab.find_local(*node->name());
+  /*std::shared_ptr<pwn::symbol> s = _symtab.find_local(*node->name());
   if(s.get() != NULL){
     std::cerr << "error: redefinition of '" << *node->name() << "'" << std::endl;
     exit(-1);
@@ -181,10 +159,13 @@ void pwn::postfix_writer::do_function_def_node(pwn::function_def_node * const no
   if(node->main()){
     _pf.ORIG(0);
 	  _pf.LABEL("_main");
+    _pf.MOV("SP","FE00h");
 	}else{
 	  _pf.LABEL(*node->name());
+    _pf.NOP();
   }
-
+  /*
+  FIXME
   _symtab.push();
   int size_args = 8;
 
@@ -202,19 +183,23 @@ void pwn::postfix_writer::do_function_def_node(pwn::function_def_node * const no
       _symtab.insert(*var->name(), s);
     }
   }
+  */
   /* Default return
    * INT:     -4
    * DOUBLE:  -8
    * STRING:  -4
    * POINTER: -4
    */
+  /*
   if(node->ret()->name() != basic_type::TYPE_VOID){
     _head += node->ret()->size();
     symbol *p = new symbol(new basic_type(node->ret()->size(), node->ret()->name()), *node->name(), 0-node->ret()->size());
     std::shared_ptr<pwn::symbol> s1(p);
     _symtab.insert(*node->name(), s1);
   }
-  if(node->ret()->name() == basic_type::TYPE_INT || node->ret()->name() == basic_type::TYPE_STRING || node->ret()->name() == basic_type::TYPE_POINTER){
+  if(node->ret()->name() == basic_type::TYPE_INT ||
+     node->ret()->name() == basic_type::TYPE_STRING ||
+     node->ret()->name() == basic_type::TYPE_POINTER){
     _sizeAtual = 4;
     _hasReturn = true;
   }else if(node->ret()->name() == basic_type::TYPE_DOUBLE){
@@ -257,13 +242,14 @@ void pwn::postfix_writer::do_function_def_node(pwn::function_def_node * const no
       _pf.ALIGN(); // make sure we are aligned
       _pf.LABEL(mklbl(++_lbl)); // give the string a name
       _pf.STR(""); // output string characters
-      /* leave the address on the stack */
+      //leave the address on the stack
       _pf.TEXT(); // return to the TEXT segment
       _pf.ADDR(mklbl(_lbl)); // the string to be printed
       _pf.LOCV(-4);
     }
-  }
+  }*/
   node->block()->accept(this, lvl);
+  /*
   if(node->ret()->name() == basic_type::TYPE_INT ||
      node->ret()->name() == basic_type::TYPE_POINTER ||
      node->ret()->name() == basic_type::TYPE_STRING){
@@ -281,94 +267,68 @@ void pwn::postfix_writer::do_function_def_node(pwn::function_def_node * const no
   }
 
   _symtab.pop();
-  _pf.LEAVE();
-  _pf.RET();
+  */
   _level--;
+  if(node->main()){
+    _pf.LABEL(mklbl(++_lbl));
+    _pf.BR(mklbl(_lbl));
+  }else{
+    _pf.RET();
+  }
 }
 
 void pwn::postfix_writer::do_block_node(pwn::block_node * const node, int lvl) {
-/*  //CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
   if(node->dec() != NULL) node->dec()->accept(this,lvl+2);
   if(node->inst() != NULL) node->inst()->accept(this,lvl+2);
-*/}
+}
 void pwn::postfix_writer::do_repeat_node(pwn::repeat_node * const node, int lvl){
-/*	CHECK_TYPES(_compiler, _symtab, node);
+  /*CHECK_TYPES(_compiler, _symtab, node);
 	int lbl_condition, lbl_endRepeat, lbl_increment;
-    _pf.TEXT();
-    if(node->init() != NULL) node->init()->accept(this, lvl + 2);
+  _pf.TEXT();
+  if(node->init() != NULL) node->init()->accept(this, lvl + 2);
 
-    _pf.ALIGN();
-    _pf.LABEL(mklbl(lbl_condition = ++_lbl));
-    node->condition()->accept(this, lvl + 2);
+  _pf.ALIGN();
+  _pf.LABEL(mklbl(lbl_condition = ++_lbl));
+  node->condition()->accept(this, lvl + 2);
 
-    _pf.JZ(mklbl(lbl_endRepeat = ++_lbl));
-    node->block()->accept(this, lvl + 2);
+  _pf.JZ(mklbl(lbl_endRepeat = ++_lbl));
+  node->block()->accept(this, lvl + 2);
 
-    _pf.ALIGN();
-    _pf.LABEL(mklbl(lbl_increment = ++_lbl));
-    node->step()->accept(this, lvl + 2);
-    _pf.JMP(mklbl(lbl_condition));
-    _pf.ALIGN();
-    _pf.LABEL(mklbl(lbl_endRepeat));
-*/}
+  _pf.ALIGN();
+  _pf.LABEL(mklbl(lbl_increment = ++_lbl));
+  node->step()->accept(this, lvl + 2);
+  _pf.JMP(mklbl(lbl_condition));
+  _pf.ALIGN();
+  _pf.LABEL(mklbl(lbl_endRepeat));
+  */
+}
 
 
 void pwn::postfix_writer::do_sub_node(cdk::sub_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE &&
-     node->left()->type()->name() == basic_type::TYPE_INT){
-    _pf.I2D();
-  }
   node->right()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE &&
-     node->right()->type()->name() == basic_type::TYPE_INT){
-    _pf.I2D();
-  }
   _pf.SUB();
-*/}
+}
 void pwn::postfix_writer::do_mul_node(cdk::mul_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE &&
-     node->left()->type()->name() == basic_type::TYPE_INT){
-    _pf.I2D();
-  }
   node->right()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE &&
-     node->right()->type()->name() == basic_type::TYPE_INT){
-    _pf.I2D();
-  }
   _pf.MUL();
-*/}
+}
 void pwn::postfix_writer::do_div_node(cdk::div_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE &&
-     node->left()->type()->name() == basic_type::TYPE_INT){
-    _pf.I2D();
-  }
   node->right()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE &&
-     node->right()->type()->name() == basic_type::TYPE_INT){
-    _pf.I2D();
-  }
   _pf.DIV();
-*/}
+}
 void pwn::postfix_writer::do_mod_node(cdk::mod_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE &&
-     node->left()->type()->name() == basic_type::TYPE_INT){
-    _pf.I2D();
-  }
   node->right()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE &&
-     node->right()->type()->name() == basic_type::TYPE_INT){
-    _pf.I2D();
-  }
   _pf.MOD();
-*/}
+}
 void pwn::postfix_writer::do_lt_node(cdk::lt_node * const node, int lvl) {
 /*  CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
@@ -398,46 +358,44 @@ void pwn::postfix_writer::do_ne_node(cdk::ne_node * const node, int lvl) {
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
   _pf.NE();
-*/}
+*/
+}
 void pwn::postfix_writer::do_eq_node(cdk::eq_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.EQ();
-*/}
+  _pf.SUB();
+}
 void pwn::postfix_writer::do_not_node(pwn::not_node * const node, int lvl){
-/*  CHECK_TYPES(_compiler, _symtab, node);
-  node->argument()->accept(this, lvl);
-  _pf.NOT();
-*/}
+  //CHECK_TYPES(_compiler, _symtab, node);
+  //node->argument()->accept(this, lvl);
+  //_pf.NOT();
+}
 
 
 
 void pwn::postfix_writer::do_evaluation_node(pwn::evaluation_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  CHECK_TYPES(_compiler, _symtab, node);
   node->argument()->accept(this, lvl); // determine the value
   if (node->argument()->type()->name() == basic_type::TYPE_INT) {
-    _pf.TRASH(4); // delete the evaluated value
-  }
-  else if (node->argument()->type()->name() == basic_type::TYPE_DOUBLE){
-    _pf.TRASH(8);
+    _pf.TRASH(1); // delete the evaluated value
   }
   else if (node->argument()->type()->name() == basic_type::TYPE_STRING) {
-    _pf.TRASH(4); // delete the evaluated value's address
+    _pf.TRASH(1); // delete the evaluated value's address
   }
   else if (node->argument()->type()->name() == basic_type::TYPE_POINTER) {
-    _pf.TRASH(4); // delete the evaluated value's address
+    _pf.TRASH(1); // delete the evaluated value's address
   }
   else if (node->argument()->type()->name() == basic_type::TYPE_VOID){
 
-  }else {
+  }else{
     std::cerr << "ERROR: CANNOT HAPPEN! evaluation node... return: " << node->argument()->type()->name() <<  std::endl;
     exit(1);
   }
-*/}
+}
 
 void pwn::postfix_writer::do_print_node(pwn::print_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  /*  CHECK_TYPES(_compiler, _symtab, node);
   node->argument()->accept(this, lvl); // determine the value to print
   if (node->argument()->type()->name() == basic_type::TYPE_INT) {
     _pf.CALL("printi");
@@ -455,9 +413,10 @@ void pwn::postfix_writer::do_print_node(pwn::print_node * const node, int lvl) {
     std::cerr << "ERROR: print CANNOT HAPPEN!" << std::endl;
     exit(1);
   }
-*/}
+  */
+}
 void pwn::postfix_writer::do_println_node(pwn::println_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  /*  CHECK_TYPES(_compiler, _symtab, node);
   node->argument()->accept(this, lvl); // determine the value to print
   if (node->argument()->type()->name() == basic_type::TYPE_INT) {
     _pf.CALL("printi");
@@ -476,47 +435,52 @@ void pwn::postfix_writer::do_println_node(pwn::println_node * const node, int lv
     exit(1);
   }
   _pf.CALL("println"); // print a newline
-*/}
+  */
+}
 //---------------------------------------------------------------------------
 
 void pwn::postfix_writer::do_read_node(pwn::read_node * const node, int lvl) {
-/*  //CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
   //FIXME
+  /*
   _pf.CALL("readi");
   _pf.PUSH();
   node->argument()->accept(this, lvl);
   _pf.STORE();
-*/}
+  */
+}
 
 void pwn::postfix_writer::do_if_node(cdk::if_node * const node, int lvl) {
-/*  int lbl1;
+  int lbl1;
   node->condition()->accept(this, lvl);
-  _pf.JZ(mklbl(lbl1 = ++_lbl));
+  _pf.JMPCOND("Z",mklbl(lbl1 = ++_lbl));
   node->block()->accept(this, lvl + 2);
   _pf.LABEL(mklbl(lbl1));
-*/}
+}
 
 //---------------------------------------------------------------------------
 
 void pwn::postfix_writer::do_if_else_node(cdk::if_else_node * const node, int lvl) {
-/*  int lbl1, lbl2;
+  int lbl1, lbl2;
   node->condition()->accept(this, lvl);
-  _pf.JZ(mklbl(lbl1 = ++_lbl));
+  _pf.JMPCOND("Z",mklbl(lbl1 = ++_lbl));
   node->thenblock()->accept(this, lvl + 2);
   _pf.JMP(mklbl(lbl2 = ++_lbl));
   _pf.LABEL(mklbl(lbl1));
+  _pf.NOP();
   node->elseblock()->accept(this, lvl + 2);
   _pf.LABEL(mklbl(lbl1 = lbl2));
-*/}
+  _pf.NOP();
+}
 
 void pwn::postfix_writer::do_identity_node(pwn::identity_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
   node->argument()->accept(this, lvl); // determine the value
-*/}
+}
 
 //---------------------------------------------------------------------------
 void pwn::postfix_writer::do_lvalue_node(pwn::lvalue_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
 
   std::shared_ptr<pwn::symbol> s = _symtab.find(*node->name());
   if(s.get() == NULL){
@@ -527,7 +491,7 @@ void pwn::postfix_writer::do_lvalue_node(pwn::lvalue_node * const node, int lvl)
   if(s.get() != NULL){
     if(s.get()->offset() != 0){
       //LOCAL
-      _pf.LOCAL(s.get()->offset());
+      //_pf.LOCAL(s.get()->offset());
     }else{
       //GLOBAL
       _pf.ADDR(*node->name());
@@ -538,41 +502,31 @@ void pwn::postfix_writer::do_lvalue_node(pwn::lvalue_node * const node, int lvl)
   }else{
     std::cerr << "var is not defined lvalue" << std::endl;
   }
-*/}
+}
 void pwn::postfix_writer::do_rvalue_node(pwn::rvalue_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  //CHECK_TYPES(_compiler, _symtab, node);
   node->lvalue()->accept(this, lvl);
-  if(node->type()->name() == basic_type::TYPE_DOUBLE){
-    _pf.DLOAD();
-  }else{
-    _pf.LOAD();
-  }
-*/}
+  _pf.LOAD();
+}
 
 void pwn::postfix_writer::do_and_node(pwn::and_node * const node, int lvl) {
-/*	int lbl1;
-  CHECK_TYPES(_compiler, _symtab, node);
+	int lbl1;
+  //CHECK_TYPES(_compiler, _symtab, node);
 	node->left()->accept(this, lvl);
-  _pf.JZ(mklbl(lbl1 = ++_lbl));
+  _pf.JMPCOND("Z",mklbl(lbl1 = ++_lbl));
   node->right()->accept(this, lvl);
-  _pf.ALIGN();
   _pf.LABEL(mklbl(lbl1));
-*/}
+}
 void pwn::postfix_writer::do_or_node(pwn::or_node * const node, int lvl){
-/*  int lbl1;
-	CHECK_TYPES(_compiler, _symtab, node);
+  int lbl1;
+	//CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
-  _pf.JNZ(mklbl(lbl1 = ++_lbl));
+  _pf.JMPCOND("NZ",mklbl(lbl1 = ++_lbl));
   node->right()->accept(this, lvl);
-  _pf.ALIGN();
   _pf.LABEL(mklbl(lbl1));
-*/}
-
-
-
-
+}
 void pwn::postfix_writer::do_assignment_node(pwn::assignment_node * const node, int lvl) {
-/*  CHECK_TYPES(_compiler, _symtab, node);
+  CHECK_TYPES(_compiler, _symtab, node);
   if(node->lvalue()->type()->name() == node->rvalue()->type()->name() &&
      node->lvalue()->type()->name() == basic_type::TYPE_INT){
     node->rvalue()->accept(this, lvl);
@@ -580,16 +534,15 @@ void pwn::postfix_writer::do_assignment_node(pwn::assignment_node * const node, 
     node->lvalue()->accept(this, lvl);
     _pf.STORE();
   }else if(node->lvalue()->type()->name() == node->rvalue()->type()->name() &&
-     node->lvalue()->type()->name() == basic_type::TYPE_DOUBLE){
-    //assignment is double
-  }else if(node->lvalue()->type()->name() == node->rvalue()->type()->name() &&
      node->lvalue()->type()->name() == basic_type::TYPE_STRING){
     //assignment is string
+    //FIXME
   }else if(node->lvalue()->type()->name() == node->rvalue()->type()->name() &&
      node->lvalue()->type()->name() == basic_type::TYPE_POINTER){
     //assignment is pointer
+    //FIXME
   }
-*/}
+}
 
 void pwn::postfix_writer::do_return_node(pwn::return_node * const node, int lvl) {
 /*  if(_hasReturn){

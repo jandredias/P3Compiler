@@ -2,6 +2,7 @@
 #define __PWN_AST_VAR_NODE_H__
 
 #include <cdk/ast/expression_node.h>
+#include "lvalue_node.h"
 namespace pwn {
 
 	/**
@@ -18,7 +19,7 @@ namespace pwn {
 	public:
 		inline basic_type *type(){ return _type; }
 		inline std::string *name(){ return _name; }
-		
+
 		void accept(basic_ast_visitor *sp, int level) {
 			sp->do_var_node(this, level);
 		}

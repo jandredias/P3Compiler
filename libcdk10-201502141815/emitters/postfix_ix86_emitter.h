@@ -190,11 +190,14 @@ namespace cdk {
          os() << label << " EQU " << value << std::endl;
        }
        void WORD(std::string label, int value) {
-         os() << label << " WORD " << value << std::endl;}
+         os() << label << " WORD " << value << std::endl;
+       }
        void STR(std::string label, std::string value) {
-         os() << label << " STR" << value << std::endl;}
+         os() << label << " STR" << value << std::endl;
+       }
        void TAB(std::string label, int value) {
-         os() << label << " TAB " << value << std::endl;}
+         os() << label << " TAB " << value << std::endl;
+       }
        void ADD() {
          os() << "POP R1" << std::endl;
          os() << "ADD M[SP + 1], R1" << std::endl;
@@ -272,16 +275,21 @@ namespace cdk {
        }
        void JMPCOND(std::string cond, std::string value) {
          if(cond == std::to_string('C') || cond == std::string("NC") ||
+            cond == std::to_string('Z') || cond == std::string("NZ") ||
             cond == std::to_string('N') || cond == std::string("NN") ||
             cond == std::to_string('O') || cond == std::string("NO") ||
-            cond == std::to_string('Z') || cond == std::string("NZ") ||
             cond == std::to_string('I') || cond == std::string("NI") ||
             cond == std::to_string('P') || cond == std::string("NP")){
           os() << "JMP." << cond << " " << value << std::endl;
         }
        }
-       void MOV() {
-         //TODO
+       void MOD(){
+         os() << "POP R1" << std::endl;
+         os() << "DIV R1, M[SP + 1]" << std::endl;
+       }
+       void MOV(std::string a, std::string b) {
+         os() << "MOV R1, " << b << std::endl;
+         os() << "MOV " << a << ", R1" << std::endl;
        }
        void MUL() {
          os() << "POP R1" << std::endl;
@@ -372,6 +380,28 @@ namespace cdk {
 
        void LABEL(std::string label){
          os() << label << ":";
+       }
+       void TRASH(int value){
+         for(auto i = 0; i < value; i++)
+          os() << "POP R0" << std::endl;
+       }
+       void LOAD(){
+         os() << "POP R1" << std::endl;
+         os() << "MOV R2, M[R1]" << std::endl;
+         os() << "PUSH R2" << std::endl;
+       }
+       void ADDR(std::string value){
+         os() << "PUSH " << value << std::endl;
+       }
+       void STORE(){
+         os() << "POP R1" << std::endl;
+         os() << "POP R2" << std::endl;
+         os() << "MOV M[R1], R2" << std::endl;
+       }
+       void DUP(){
+         os() << "POP R1" << std::endl;
+         os() << "PUSH R1" << std::endl;
+         os() << "PUSH R1" << std::endl;
        }
 
   };

@@ -44,12 +44,11 @@
 
 %type <node> stmt dec v_dec f_dec f_def
 %type <sequence> decs   vars arg_call stmts
-%type <expression> expr literal f_call init
+%type <expression> expr literal f_call
 %type <i>
 %type <lvalue> lval
 %type <block> body
 %type <t> type
-%type <s> strlist
 
 %{
 //-- The rules below will be included in yyparse, the main parsing function.

@@ -3,7 +3,7 @@
 #             CONFIGURE THESE VARIABLES IF NEEDED
 #---------------------------------------------------------------
 
-ROOT = ${HOME}/compiladores/root
+ROOT = ${HOME}/P3Compiler/root
 CDK_INC_DIR = $(ROOT)/usr/include
 CDK_LIB_DIR = $(ROOT)/usr/lib
 
@@ -14,7 +14,7 @@ Y_NAME=pwn_parser
 #    PROBABLY, NO NEED TO CHANGE ANYTHING BEYOND THIS POINT
 #---------------------------------------------------------------
 
-LFLAGS   = 
+LFLAGS   =
 YFLAGS   = -dtvP
 CXXFLAGS = -std=c++11 -DYYDEBUG=1 -Wall -ggdb -Itargets -I. -I$(CDK_INC_DIR) -I$(CDK_INC_DIR)/cdk
 #CXXFLAGS = -std=c++11 -DYYDEBUG=1 -Wall -O3 -ggdb -Itargets -I. -I$(CDK_INC_DIR) -I$(CDK_INC_DIR)/cdk
