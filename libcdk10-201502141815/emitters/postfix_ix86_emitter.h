@@ -273,16 +273,6 @@ namespace cdk {
        void JMP(std::string value) {
          os() << "JMP " << value << std::endl;
        }
-       void JMPN(std::string value){
-         os() << "POP R1" << std::endl;
-         os() << "ADD R1, R0" << std::endl;
-         os() << "JMP.N " << value << std::endl;
-       }
-       void JMPZ(std::string value) {
-         os() << "POP R1" << std::endl;
-         os() << "ADD R1, R0" << std::endl;
-         os() << "JMP.Z " << value << std::endl;
-       }
        void JMPCOND(std::string cond, std::string value) {
          os() << "POP R1" << std::endl;
          os() << "ADD R1, R0" << std::endl;
@@ -384,6 +374,7 @@ namespace cdk {
          os() << "XOR M[SP + 1], R1" << std::endl;
        }
 
+
        void LABEL(std::string label){
          os() << label << ":";
        }
@@ -405,10 +396,75 @@ namespace cdk {
          os() << "MOV M[R1], R2" << std::endl;
        }
        void DUP(){
-         os() << "POP R1" << std::endl;
-         os() << "PUSH R1" << std::endl;
-         os() << "PUSH R1" << std::endl;
+         os() << "PUSH M[SP + 1]" << std::endl;
        }
+       void JMPNZ(std::string value){
+         os() << "POP R1" << std::endl;
+         os() << "ADD R1, R0" << std::endl;
+         os() << "JMP.NZ" << value << std::endl;
+       }
+       void JMPZ(std::string value) {
+         os() << "POP R1" << std::endl;
+         os() << "ADD R1, R0" << std::endl;
+         os() << "JMP.Z " << value << std::endl;
+       }
+       void EQ(){
+         os() << "POP R1" << std::endl;
+         os() << "CMP R1, M[SP + 1]" << std::endl;
+         os() << "BR.NZ 3" << std::endl;
+         os() << "MOV R1, 1" << std::endl;
+         os() << "BR 2" << std::endl;
+         os() << "MOV R1, 0" << std::endl;
+         os() << "MOV M[SP + 1], R1" << std::endl;
+       }
+       void NE(){
+         os() << "POP R1" << std::endl;
+         os() << "CMP R1, M[SP + 1]" << std::endl;
+         os() << "BR.Z 3" << std::endl;
+         os() << "MOV R1, 1" << std::endl;
+         os() << "BR 2" << std::endl;
+         os() << "MOV R1, 0" << std::endl;
+         os() << "MOV M[SP + 1], R1" << std::endl;
+       }
+       void LT(){
+         os() << "POP R1" << std::endl;
+         os() << "CMP R1, M[SP + 1]" << std::endl;
+         os() << "BR.NN 3" << std::endl;
+         os() << "MOV R1, 1" << std::endl;
+         os() << "BR 2" << std::endl;
+         os() << "MOV R1, 0" << std::endl;
+         os() << "MOV M[SP + 1], R1" << std::endl;
+
+       }
+       void LE(){
+         os() << "POP R1" << std::endl;
+         os() << "CMP R1, M[SP + 1]" << std::endl;
+         os() << "BR.P 3" << std::endl;
+         os() << "MOV R1, 1" << std::endl;
+         os() << "BR 2" << std::endl;
+         os() << "MOV R1, 0" << std::endl;
+         os() << "MOV M[SP + 1], R1" << std::endl;
+
+       }
+       void GT(){
+         os() << "POP R1" << std::endl;
+         os() << "CMP R1, M[SP + 1]" << std::endl;
+         os() << "BR.NP 3" << std::endl;
+         os() << "MOV R1, 1" << std::endl;
+         os() << "BR 2" << std::endl;
+         os() << "MOV R1, 0" << std::endl;
+         os() << "MOV M[SP + 1], R1" << std::endl;
+       }
+       void GE(){
+         os() << "POP R1" << std::endl;
+         os() << "CMP R1, M[SP + 1]" << std::endl;
+         os() << "BR.N 3" << std::endl;
+         os() << "MOV R1, 1" << std::endl;
+         os() << "BR 2" << std::endl;
+         os() << "MOV R1, 0" << std::endl;
+         os() << "MOV M[SP + 1], R1" << std::endl;
+       }
+
 
   };
 

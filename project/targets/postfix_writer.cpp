@@ -333,76 +333,44 @@ void pwn::postfix_writer::do_lt_node(cdk::lt_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.SUB();
-  _pf.JMPCOND("N",mklbl(++_lbl));
-  _pf.TRASH(1);
-  _pf.PUSH(1);
-  _pf.LABEL(mklbl(_lbl));
-  _pf.NOP();
+  _pf.LT();
 }
 void pwn::postfix_writer::do_le_node(cdk::le_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.SUB();
-  _pf.JMPCOND("NP",mklbl(++_lbl));
-  _pf.TRASH(1);
-  _pf.PUSH(1);
-  _pf.LABEL(mklbl(_lbl));
-  _pf.NOP();
+  _pf.LE();
 }
 void pwn::postfix_writer::do_ge_node(cdk::ge_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.SUB();
-  _pf.JMPCOND("NN",mklbl(++_lbl));
-  _pf.TRASH(1);
-  _pf.PUSH(1);
-  _pf.LABEL(mklbl(_lbl));
-  _pf.NOP();
+  _pf.GE();
 }
 void pwn::postfix_writer::do_gt_node(cdk::gt_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.SUB();
-  _pf.JMPCOND("P",mklbl(++_lbl));
-  _pf.TRASH(1);
-  _pf.PUSH(1);
-  _pf.LABEL(mklbl(_lbl));
-  _pf.NOP();
+  _pf.GT();
 }
 void pwn::postfix_writer::do_ne_node(cdk::ne_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.SUB();
-  _pf.JMPCOND("NZ",mklbl(++_lbl));
-  _pf.TRASH(1);
-  _pf.PUSH(1);
-  _pf.LABEL(mklbl(_lbl));
-  _pf.NOP();
+  _pf.NE();
 }
 void pwn::postfix_writer::do_eq_node(cdk::eq_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);
   node->left()->accept(this, lvl);
   node->right()->accept(this, lvl);
-  _pf.SUB();
-  _pf.JMPCOND("Z",mklbl(++_lbl));
-  _pf.TRASH(1);
-  _pf.PUSH(1);
-  _pf.LABEL(mklbl(_lbl));
-  _pf.NOP();
+  _pf.EQ();
 }
 void pwn::postfix_writer::do_not_node(pwn::not_node * const node, int lvl){
   CHECK_TYPES(_compiler, _symtab, node);
   node->argument()->accept(this, lvl);
-  _pf.PUSH(1);
+  _pf.PUSH(65535);
   _pf.XOR();
 }
-
-
 
 void pwn::postfix_writer::do_evaluation_node(pwn::evaluation_node * const node, int lvl) {
   CHECK_TYPES(_compiler, _symtab, node);

@@ -1,6 +1,6 @@
 #ifndef __PWN_AST_ADDRESS_NODE_H__
 #define __PWN_AST_ADDRESS_NODE_H__
-
+#include "lvalue_node.h"
 #include <cdk/ast/unary_expression_node.h>
 namespace pwn {
 	

@@ -155,8 +155,6 @@ namespace cdk {
     virtual void INC() = 0;
     virtual void INT(int) = 0;
     virtual void JMP(std::string) = 0;
-    virtual void JMPZ(std::string) = 0;
-    virtual void JMPN(std::string) = 0;
     virtual void JMPCOND(std::string, std::string) = 0;
     virtual void MOD() = 0;
     virtual void MOV(std::string, std::string) = 0;
@@ -185,12 +183,23 @@ namespace cdk {
     virtual void TEST() = 0;
     virtual void XCH() = 0;
     virtual void XOR() = 0;
+
+
+    virtual void JMPZ(std::string) = 0;
+    virtual void JMPNZ(std::string) = 0;
     virtual void LABEL(std::string) = 0;
     virtual void TRASH(int value) = 0;
     virtual void LOAD() = 0;
     virtual void ADDR(std::string) = 0;
     virtual void STORE() = 0;
     virtual void DUP() = 0;
+    virtual void EQ() = 0;
+    virtual void NE() = 0;
+    virtual void LT() = 0;
+    virtual void LE() = 0;
+    virtual void GT() = 0;
+    virtual void GE() = 0;
+
   };
 
 } // namespace cdk
